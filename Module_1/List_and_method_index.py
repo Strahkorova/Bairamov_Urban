@@ -5,9 +5,9 @@ print(immutable_var)
 # Изменение данных в кортеже не возможно, так как это неизменяемый объект
 var = immutable_var + (7, 8)
 print(var)
-list = [26, 35, 4]
+my_list = [26, 35, 4]
 mutable_list = [4, 15, 8, 64]
-mutable_list.extend(list)
+mutable_list.extend(my_list)
 print(mutable_list)
 mutable_list.sort()
 print(mutable_list)
