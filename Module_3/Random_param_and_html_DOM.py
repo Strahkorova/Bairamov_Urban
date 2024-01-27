@@ -30,9 +30,6 @@ My_dict_3 = {'green': [0, 128, 0], 'black': 0000, 'white': [55, 25, 255]}
 My_dict_4 = {'run': 'бегать', 'jump': 'прыгать', 'fly': 'летать'}
 My_dict_5 = {'read': 'читать', 'write': 'писать', 'listen': 'слушать', 'speak': 'говорить'}
 
-def test_3(*args):
-    if isinstance(args, list):
-        print('верно')
 
 def test_2(**kwargs):
     for key, value in kwargs.items():
@@ -59,7 +56,7 @@ def test_2(**kwargs):
                 print('Другой тип данных ', type(value))
 
 
-#test_2(elem_1 = My_dict, elem_2 = 45, elem_3 = 'яблоко', elem_4 = My_list)
+test_2(elem_1 = My_dict, elem_2 = 45, elem_3 = 'яблоко', elem_4 = My_list)
 
 
 test(My_dict, My_list, My_dict_3, 45, 'writer', My_dict_5)
