@@ -1,27 +1,14 @@
 
 class Buiding:
 
-    def __init__(self, floor: int):
-        self.floors = floor
+    def __init__(self, floor: int, build: str):
+        self.numberOfFloors = floor
+        self.buildingType = build
 
     def __eq__(self, other):
-        return self.floors == other
+        return self.numberOfFloors == other.numberOfFloors and self.buildingType == other.buildingType
 
 
-b1 = Buiding(5)
-b2 = Buiding(5)
-#print(b1 == b2)
-
-
-class Clock:
-    def __init__(self, seconds: int):
-        self.seconds = seconds
-
-    def __eq__(self, other):
-        sc = other
-        return self.seconds == sc
-
-
-c1 = Clock(1000)
-c2 = Clock(1000)
-print(c1 == c2)
+b1 = Buiding(5, "этаж")
+b2 = Buiding(5, "этаж")
+print(b1 == b2)
