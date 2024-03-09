@@ -2,8 +2,6 @@
 class Buiding:
 
     def __init__(self, floor: int):
-        if not isinstance(floor, int):
-            print("Этаж должен быть целым числом")
         self.floors = floor
 
     def __eq__(self, other):
@@ -12,4 +10,18 @@ class Buiding:
 
 b1 = Buiding(5)
 b2 = Buiding(5)
-print(b1 == b2)
+#print(b1 == b2)
+
+
+class Clock:
+    def __init__(self, seconds: int):
+        self.seconds = seconds
+
+    def __eq__(self, other):
+        sc = other
+        return self.seconds == sc
+
+
+c1 = Clock(1000)
+c2 = Clock(1000)
+print(c1 == c2)

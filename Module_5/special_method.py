@@ -1,19 +1,19 @@
 
 class House:
     def __init__(self):
-        self.number = 0
+        self.numberOfFloors = 0
 
-    def start(self, i):
-        self.number = i
-        print("Номер = ", self.number)
+    def setNewNumberOfFloors(self, i):
+        self.numberOfFloors = i
+        print("Номер = ", self.numberOfFloors)
 
 
 class House1:
-    number = 0
+    numberOfFloors = 0
 
-    def start(self, i):
-        self.number = i
-        print("Номер1 = ", self.number)
+    def setNewNumberOfFloors(self, i):
+        self.numberOfFloors = i
+        print("Номер1 = ", self.numberOfFloors)
 
-House1().start(5)
-House().start(8)
+House1().setNewNumberOfFloors(5)
+House().setNewNumberOfFloors(8)
