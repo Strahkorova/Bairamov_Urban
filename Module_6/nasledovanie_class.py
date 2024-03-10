@@ -7,19 +7,19 @@ class Car:
         return '{} Марка {}'.format(self.__class__.__name__, self.name)
 
     def horse_powers(self, power):
-        print("Количество лошадинных сил = " + str(power) + ". Стомость машины = " + str(self.price))
+        return ("Количество лошадинных сил = " + str(power) + ". Стомость машины = " + str(self.price))
 
 class Nissan(Car):
     price = 50000
 
     def horse_powers(self, power):
-        print("Количество лошадинных сил " + self.name + " = " + str(power) + ". Стомость машины = " + str(self.price))
+        return ("Количество лошадинных сил " + self.name + " = " + str(power) + ". Стомость машины = " + str(self.price))
 
 class Kia(Car):
     price = 80000
 
     def horse_powers(self, power):
-        print("Kia " + self.name + " имеет " + str(power) + " лощадиных сил. Стомость машины = " + str(self.price))
+        return ("Kia " + self.name + " имеет " + str(power) + " лощадиных сил. Стомость машины = " + str(self.price))
 
 car = Kia("Sorento")
 print(car)
