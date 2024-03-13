@@ -56,10 +56,10 @@ def test_2(**kwargs):
                 print('Другой тип данных ', type(value))
 
 
-test_2(elem_1 = My_dict, elem_2 = 45, elem_3 = 'яблоко', elem_4 = My_list)
+test_2(elem_1 = My_dict)
 
 
-test(My_dict, My_list, My_dict_3, 45, 'writer', My_dict_5)
+#test(My_dict, My_list, My_dict_3, 45, 'writer', My_dict_5)
 
 
 def fac(n):
