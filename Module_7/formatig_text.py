@@ -51,8 +51,8 @@ class play(team):
         elif score_1 < score_2:
             print('Команда - {0} победила!'.format(self.list_1[1]))
         else:
-            time_avg_1 = score_1/time_1
-            time_avg_2 = score_2/time_2
+            time_avg_1 = time_1/score_1
+            time_avg_2 = time_2score_2
             if time_avg_1 > time_avg_2:
                 print('Команда {0} победила затратив на одну задачу - {1:.3f}'.format(self.list_1[0], time_avg_1))
             else:
