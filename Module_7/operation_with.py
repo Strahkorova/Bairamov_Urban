@@ -1,6 +1,6 @@
 from pprint import pprint
 
-file_name = 'poem.txt'
+
 # file = open(file_name, mode='r', encoding='utf8')
 # line = True
 # while line:
@@ -14,7 +14,7 @@ file_name = 'poem.txt'
 # file.close()
 
 
-
+file_name = 'poem.txt'
 with open(file_name, mode='r', encoding='utf8') as file:
     for line in file:
         print(line)
