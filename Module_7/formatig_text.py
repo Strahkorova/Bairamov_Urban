@@ -45,8 +45,6 @@ class rules():
                 print(line)
         print(file.closed)
 
-
-
 class play(team, rules):
 
     def challenge_result(self):
