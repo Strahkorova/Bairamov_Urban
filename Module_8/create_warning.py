@@ -49,9 +49,6 @@ class client(My_Warning):
                 My_Warning.warn_always(self)
 
 
-
-
-
 CL = client("Tom", "банкрот", 200)
 CL.bank()
 print()
