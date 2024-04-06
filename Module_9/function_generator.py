@@ -41,3 +41,4 @@ print(degr(16, 2))
 
 rec = Rect(14, 4)
 print(rec())
+
