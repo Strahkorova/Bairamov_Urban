@@ -1,5 +1,4 @@
-def arifmetic():
-    oper = input("Укажите тип операции: ")
+def arifmetic(oper):
     if oper == "+":
         def summ(x, y):
             return x + y
@@ -27,20 +26,17 @@ def degr(x, y):
     return x**y
 
 
-class Repeater:
+class Rect:
    def __init__(self, value):
        self.value = value
    def __call__(self, n):
        return self.value ** (1/n) #вывести из под корня
 
 
-x = float(input("Укажите параметр х: "))
-y = float(input("Укажите параметр y: "))
+arif = arifmetic("+")
+print(arif(16, 2))
+print(degree(16, 2))
+print(degr(16, 2))
 
-arif = arifmetic()
-print(arif(x, y))
-print(degree(x, y))
-print(degr(x, y))
-
-repeat_five = Repeater(x)
-print(repeat_five(y))
+rec = Rect(16)
+print(rec(2))
