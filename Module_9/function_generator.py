@@ -27,10 +27,11 @@ def degr(x, y):
 
 
 class Rect:
-   def __init__(self, value):
-       self.value = value
-   def __call__(self, n):
-       return self.value ** (1/n) #вывести из под корня
+   def __init__(self, dlina, shirina):
+       self.dlina = dlina
+       self.shirina = shirina
+   def __call__(self):
+       return self.dlina * self.shirina
 
 
 arif = arifmetic("+")
@@ -38,5 +39,5 @@ print(arif(16, 2))
 print(degree(16, 2))
 print(degr(16, 2))
 
-rec = Rect(16)
-print(rec(2))
+rec = Rect(14, 4)
+print(rec())
