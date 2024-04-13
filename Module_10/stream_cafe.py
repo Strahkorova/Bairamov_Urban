@@ -1,74 +1,58 @@
+import threading
+import queue
 import time
-from queue import Empty, Queue
-from threading import Thread
 
-class Table():
 
-    table_count = {}
+class Table:
     def __init__(self, number):
         self.number = number
-        self.busy = 0
+        self.is_busy = False
 
-    def Table(self):
-        i = 1
-        while i != self.number+1:
-            Table.table_count[f"Стол № {i}"] = self.busy
-            i += 1
-        print(Table.table_count)
+class Cafe:
+    def __init__(self, tables):
+        self.queue = queue.Queue()
+        self.tables = tables
 
-
-class Cafe(Thread):
-    def __init__(self, queue_count, Table):
-        self.queue_1 = 0
-        self.table = Table
-        self.queue_count = queue_count
-        self.queue = Queue()
-
-    #моделирует приход посетителя
     def customer_arrival(self):
-        i = 1
-        while i != self.queue_count + 1:
-            print(f"Посетитель номер - {i} прибыл")
+        for i in range(1, 21):
             time.sleep(1)
-            self.queue.put(i)
-            i += 1
+            print(f"Посетитель номер {i} прибыл")
+            customer = {"number": i}
+            self.queue.put(customer)
 
-    #моделирует обслуживание посетителя
-    def serve_customer(self):
-        while True:
-            try:
-                item = self.queue.get()
-            except Empty:
-                continue
-            else:
-                print(f'Обрабатываем элемент {item}')
-                time.sleep(2)
-                self.queue.task_done()
-
-
+    def serve_customer(self, customer):
+        for table in self.tables:
+            if not table.is_busy:
+                table.is_busy = True
+                print(f"Посетитель номер {customer['number']} сел за стол {table.number} (начало обслуживания)")
+                time.sleep(5)
+                table.is_busy = False
+                print(f"Посетитель номер {customer['number']} покушал и ушёл (конец обслуживания)")
+                return #print(f"Посетитель номер {customer['number']} ожидает свободный стол (помещение в очередь)")
+        self.queue.put(customer)
 
 
+def customer_thread(cafe):
+    while True:
+        customer = cafe.queue.get()
+        cafe.serve_customer(customer)
+        cafe.queue.task_done()
+        if cafe.queue.empty():
+            break
 
 
-#class Customer():
+table1 = Table(1)
+table2 = Table(2)
+table3 = Table(3)
+tables = [table1, table2, table3]
 
+cafe = Cafe(tables)
 
-c = Cafe(4, Table.table_count)
-t = Table(4)
-t.Table()
+customer_arrival_thread = threading.Thread(target=cafe.customer_arrival)
+customer_arrival_thread.start()
 
-producer_thread = Thread(target=c.customer_arrival)
-producer_thread.start()
+for _ in range(3):
+    t = threading.Thread(target=customer_thread, args=(cafe,))
+    t.start()
 
-consumer_thread = Thread(target=c.serve_customer)
-consumer_thread.start()
-
-# дожидаемся, пока все задачи добавятся в очередь
-producer_thread.join()
-
-# дожидаемся, пока все задачи в очереди будут завершены
-consumer_thread.join()
-Queue().join()
-#c.customer_arrival()
-#c.serve_customer()
-
+customer_arrival_thread.join()

@@ -1,44 +1,38 @@
-import time
-from queue import Empty, Queue
-from threading import Thread
+from queue import Queue
+import time, datetime, threading
 
+students= [(99, "Андрей"),
+           (76, "Александр"),
+           (75, "Никита"),
+           (72, "Евгений"),
+           (66, "Алексей"),
+           (62, "Сергей"),
+           (50, "Михаил")]
 
-def producer(queue):
-    for i in range(1, 6):
-        print(f'Вставляем элемент {i} в очередь')
-        time.sleep(1)
-        queue.put(i)
-
-
-def consumer(queue):
+def student(q):
     while True:
-        try:
-            item = queue.get()
-        except Empty:
-            continue
-        else:
-            print(f'Обрабатываем элемент {item}')
-            time.sleep(2)
-            queue.task_done()
+        # Получаем задание из очереди
+        check = q.get()
+        # Выводим время начала проверки
+        print(check[1], 'сдал работу в', datetime.datetime.now().strftime('%H:%M:%S'))
+        #Время затраченное на проверку, которое зависит от рейтинга
+        time.sleep((100-check[0])/5)
+        # Время окончания проверки
+        print(check[1], 'забрал работу в', datetime.datetime.now().strftime('%H:%M:%S'))
+        # Даём сигнал о том, что задание очереди выполнено
+        q.task_done()
 
-
-def main():
-    queue = Queue()
-
-    # создаем поток-производитель и запускаем его
-    producer_thread = Thread(target=producer, args=(queue,))
-    producer_thread.start()
-
-    # создаем поток-потребитель и запускаем его
-    consumer_thread = Thread(target=consumer, args=(queue,), daemon=True)
-    consumer_thread.start()
-
-    # дожидаемся, пока все задачи добавятся в очередь
-    producer_thread.join()
-
-    # дожидаемся, пока все задачи в очереди будут завершены
-    queue.join()
-
-
-if __name__ == '__main__':
-    main()
+# Создаем очередь
+q = Queue()
+# Загружаем в очередь студентов
+for x in students:
+    q.put(x)
+#создаём и запускаем потоки
+thread1 = threading.Thread(target=student, args=(q,), daemon=True)
+thread2 = threading.Thread(target=student, args=(q,), daemon=True)
+thread1.start()
+time.sleep(10)
+thread2.start()
+# Блокируем выполнение до завершения всех заданий
+q.join()
+print("Этот текст напечатается после окончания блокировки")
