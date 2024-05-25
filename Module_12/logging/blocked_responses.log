@@ -1,0 +1,3 @@
+ERROR: 'https://instagram.com', HTTPSConnectionPool(host='instagram.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029ED0480590>, 'Connection to instagram.com timed out. (connect timeout=3)'))
+ERROR: 'https://wikipedia.org', HTTPSConnectionPool(host='www.wikipedia.org', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029ED0480F80>, 'Connection to www.wikipedia.org timed out. (connect timeout=3)'))
+ERROR: 'https://twitter.com', HTTPSConnectionPool(host='twitter.com', port=443): Read timed out. (read timeout=3)
